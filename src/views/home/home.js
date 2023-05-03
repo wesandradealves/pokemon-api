@@ -12,7 +12,7 @@ function Home(props) {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [pages, setPage] = useState({
-        current: 100,
+        current: 1,
         total: null
     });
 

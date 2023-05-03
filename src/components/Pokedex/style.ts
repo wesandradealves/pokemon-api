@@ -6,7 +6,7 @@ interface Interface {
 }
 
 export const Container = styled.div<Interface>`
-    color: #1E252E;
+    color: #DC211E;
     position: relative;
     min-height: 100vh;
     width: 100%;

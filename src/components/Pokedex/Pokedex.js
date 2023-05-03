@@ -79,9 +79,7 @@ function Pokedex(props) {
                                 })}
                               </ListItem>
                               <div className="ps-4 col-6">
-                                {data.thumbnails && (<div>
-                                  <Thumbnail className="img-fluid" src={data.thumbnails[0]} />
-                                </div>)}
+                                <Thumbnail className="img-fluid" src={data.thumbnails ? data.thumbnails[0] : 'https://www.clipartmax.com/png/small/17-174728_pokeball-clipart-open-pokemon-open-ball-png.png'} />
                               </div>
                             </CardInfo>
 
