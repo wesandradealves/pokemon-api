@@ -72,16 +72,16 @@ function Pokedex(props) {
                             backgroundColor={getTypeBaseColor(data.types[0].type.name)}>
                             <CardTitle className="d-block title">{data.name}</CardTitle> 
               
-                            <CardInfo className="info d-flex flex-wrap align-items-stretch justify-content-between overflow-hidden">
+                            <CardInfo className="info pt-4 pb-4 d-flex flex-wrap align-items-stretch justify-content-between overflow-hidden">
                               <ListItem className="col-6 list d-flex flex-column justify-content-center">
                                 {data.types.map((data, key) => {
                                   return (<HighlightItem key={key} backgroundColor={getTypeBaseColor(data.type.name)} className={`d-block`}>{data.type.name}</HighlightItem>);
                                 })}
                               </ListItem>
                               <div className="ps-4 col-6">
-                                <div>
+                                {data.thumbnails && (<div>
                                   <Thumbnail className="img-fluid" src={data.thumbnails[0]} />
-                                </div>
+                                </div>)}
                               </div>
                             </CardInfo>
 
@@ -103,10 +103,11 @@ function Pokedex(props) {
           <Stack spacing={2} className='d-flex flex-column justify-content-center align-items-center mt-4'>
             <Pagination 
             count={props.pages.total} 
+            showFirstButton showLastButton
             onChange={(e, v) => props.onChange(v)}
             siblingCount={0} 
             boundaryCount={2} 
-            defaultPage={1} 
+            defaultPage={props.pages.current} 
             color="primary" />
           </Stack>      
         </div>          

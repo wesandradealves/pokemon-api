@@ -12,20 +12,13 @@ function Home(props) {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [pages, setPage] = useState({
-        current: 1,
+        current: 100,
         total: null
     });
 
     const fetchData = async (page) => {
         setLoading(true);
-
-        let url = 'https://pokeapi.co/api/v2/pokemon/?limit=10';
-
-        if(data && (data.next || data.previous)) {
-            if(page > pages.current) {
-                url = data.next
-            }
-        }
+        let url = `https://pokeapi.co/api/v2/pokemon/?offset=${page > 1 ? page * 10 : 0}&limit=10`;
 
         const response = await fetch(url);
         const _response = await response.json();
@@ -36,7 +29,7 @@ function Home(props) {
                         const Response = await fetch(item.url);
                         const _Response = await Response.json();   
 
-                        const search = await fetch(`https://www.googleapis.com/customsearch/v1?key=AIzaSyBfcE-uAJShsP-nw7_0ldiGtjuSyvUerNg&cx=52729c06ac02b43c2&q=${item.name}&searchType=image`);
+                        const search = await fetch(`https://www.googleapis.com/customsearch/v1?key=AIzaSyBfcE-uAJShsP-nw7_0ldiGtjuSyvUerNg&cx=52729c06ac02b43c2&q=${item.name + ' pokemon'}&searchType=image`);
                         const _search = await search.json();    
                         
                         return {
@@ -44,7 +37,8 @@ function Home(props) {
                             ..._Response, 
                             thumbnails: _search.items.map((item) => {
                                 return item.link
-                            })}
+                            })
+                        }
                     });
     
                     const info = await Promise.all(promises);
@@ -80,7 +74,7 @@ function Home(props) {
         if(data&&!pages.total) {
             setPage({
                 ...pages,
-                total: data.count
+                total: Math.round(data.count/10)
             })
         }
     }, [data, pages]);     
