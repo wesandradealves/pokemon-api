@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-// import pokeball from './assets/pokeball.png';
 
 interface Interface {
     backgroundColor?:any;

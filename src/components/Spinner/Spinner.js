@@ -1,4 +1,5 @@
 import loader from '../../assets/imgs/loader.gif';
+
 import { 
     Container
 } from './style.ts';
