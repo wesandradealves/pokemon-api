@@ -62,7 +62,7 @@ function Pokedex(props) {
             <Grid container spacing={2}>
               {
                 props.data.data.sort(function (a, b) {
-                  return a.name.localeCompare(b.name);
+                  return  a.order > b.order ? 1 : -1;
                 }).map((data, key) => {
                   return (
                       <Grid item xs={12} md={6} lg={4} key={key}>
