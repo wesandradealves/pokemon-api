@@ -6,7 +6,7 @@ interface Interface {
 }
 
 export const Container = styled.div<Interface>`
-    color: #1E252E;
+    color: #DC211E;
     position: relative;
     min-height: 100vh;
     width: 100%;
@@ -19,6 +19,12 @@ export const Container = styled.div<Interface>`
         border: 0;
         box-shadow: initial;
     }
+    button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-textPrimary.Mui-selected {
+        background: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg') center center / contain no-repeat;
+        position: relative;
+        overflow: hidden;
+        font-size: 1pt;
+    }    
 `;
 
 export const Card = styled.div<Interface>`

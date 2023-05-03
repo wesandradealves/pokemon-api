@@ -5,7 +5,7 @@ interface Interface {
 }
 
 export const Container = styled.div<Interface>`
-    background-color: #DD3D20;
+    background-color: #DC211E;
     height: 100vh;
     width: 100%;
     overflow: hidden;

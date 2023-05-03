@@ -12,7 +12,7 @@ function Home(props) {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [pages, setPage] = useState({
-        current: 100,
+        current: 1,
         total: null
     });
 
@@ -83,7 +83,7 @@ function Home(props) {
         <Section id="dashboard" className="overflow-hidden" data-loading={isLoading}>
                 {data && (
                     <Container className="container pt-5 pb-5">
-                        <Title className='mb-4'>Pokedéx <Subtitle>Página {pages.current}/{pages.total}</Subtitle></Title>
+                        <Title className='mb-4'>Pokedéx <Subtitle>Page {pages.current}/{pages.total}</Subtitle></Title>
                         <Pokedex onChange={handlePaginate} pages={pages} data={data} />
                     </Container>
                 )}
