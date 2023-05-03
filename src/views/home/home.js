@@ -86,7 +86,7 @@ function Home(props) {
     }, [data, pages]);     
 
     return (
-        <Section id="dashboard" className="overflow-x-hidden" data-loading={isLoading}>
+        <Section id="dashboard" className="overflow-hidden" data-loading={isLoading}>
                 {data && (
                     <Container className="container pt-5 pb-5">
                         <Title className='mb-4'>Pokedéx <Subtitle>Página {pages.current}/{pages.total}</Subtitle></Title>
