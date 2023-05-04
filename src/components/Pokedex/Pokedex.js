@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Icon from '@mui/material/Icon';
 
 import { 
   Container,
@@ -62,7 +62,14 @@ function Pokedex(props) {
             <Grid container spacing={2}>
               {
                 props.data.data.sort(function (a, b) {
-                  return a.name.localeCompare(b.name);
+                  if(props.sortBy) {
+                    if(a[props.sortBy] === 'string') {
+                      return a[props.sortBy].localeCompare(b[props.sortBy]);
+                    } else {
+                      return a[props.sortBy] > b[props.sortBy] ? 1 : -1;
+                    }
+                  }
+                  return a.order > b.order ? 1 : -1;
                 }).map((data, key) => {
                   return (
                       <Grid item xs={12} md={6} lg={4} key={key}>
@@ -85,9 +92,9 @@ function Pokedex(props) {
 
                             <CardFooter>
                               <ListItem className="list d-flex align-items-center justify-content-between">
-                                <HighlightItem className="d-block flex-fill">HP: {getStatus(data.stats, 'hp')}</HighlightItem>
-                                <HighlightItem className="d-block flex-fill">Attack: {getStatus(data.stats, 'attack')}</HighlightItem>
-                                <HighlightItem className="d-block flex-fill">Defense: {getStatus(data.stats, 'defense')}</HighlightItem> 
+                                <HighlightItem className="d-flex flex-fill align-items-center"><Icon sx={{ fontSize: 15 }}>battery_charging_full</Icon> HP: {getStatus(data.stats, 'hp')}</HighlightItem>
+                                <HighlightItem className="d-flex flex-fill align-items-center"><Icon sx={{ fontSize: 15 }}>bolt</Icon> Attack: {getStatus(data.stats, 'attack')}</HighlightItem>
+                                <HighlightItem className="d-flex flex-fill align-items-center"><Icon sx={{ fontSize: 15 }}>shield_with_heart</Icon> Defense: {getStatus(data.stats, 'defense')}</HighlightItem> 
                               </ListItem>
                             </CardFooter>
                           </Card>
