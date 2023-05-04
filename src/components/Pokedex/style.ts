@@ -9,6 +9,14 @@ export const Container = styled.div<Interface>`
     position: relative;
     min-height: 100vh;
     width: 100%;
+    &:hover .item {
+        filter: blur(1px);
+        cursor: pointer;
+        &:hover {
+            filter: initial;
+            transform: scale(.99)
+        }
+    }
     .item {
         height: 100%;
         display: flex;
@@ -17,9 +25,10 @@ export const Container = styled.div<Interface>`
         position: relative;
         border: 0;
         box-shadow: initial;
+        transition: 500ms ease all;
     }
     button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-textPrimary.Mui-selected {
-        background: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg') center center / contain no-repeat;
+        background: url('/assets/imgs/pokeball_icon.svg') center center / contain no-repeat;
         position: relative;
         overflow: hidden;
         font-size: 1pt;
@@ -47,7 +56,7 @@ export const Card = styled.div<Interface>`
         position: absolute;
         bottom: 0;
         right: 0;
-        background: url(https://icon-icons.com/downloadimage.php?id=136305&root=2248/SVG/&file=pokeball_icon_136305.svg) center center / contain no-repeat transparent;
+        background: url(/assets/imgs/pokeball_icon.svg) center center / contain no-repeat transparent;
         z-index: 1;
         opacity: .1;
     }  

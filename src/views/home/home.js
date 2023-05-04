@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Spinner from '../../components/Spinner/';
 import Pokedex from '../../components/Pokedex/';
+import Filter from '../../components/Filter/';
+
 import { 
     Section,
     Title,
@@ -10,6 +12,7 @@ import {
 
 function Home(props) {
     const [data, setData] = useState(null);
+    const [sortBy, setsortBy] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [pages, setPage] = useState({
         current: 1,
@@ -18,6 +21,7 @@ function Home(props) {
 
     const fetchData = async (page) => {
         setLoading(true);
+
         let url = `https://pokeapi.co/api/v2/pokemon/?offset=${page > 1 ? page * 10 : 0}&limit=10`;
 
         const response = await fetch(url);
@@ -60,13 +64,11 @@ function Home(props) {
             ...pages,
             current: page
         })
-        
         fetchData(page)
-    }      
+    }    
 
     useEffect(() => {
         document.title = `Pokedéx - Página Inicial`;
-
         fetchData(pages.current); 
     }, []); 
     
@@ -83,8 +85,13 @@ function Home(props) {
         <Section id="dashboard" className="overflow-hidden" data-loading={isLoading}>
                 {data && (
                     <Container className="container pt-5 pb-5">
-                        <Title className='mb-4'>Pokedéx <Subtitle>Page {pages.current}/{pages.total}</Subtitle></Title>
-                        <Pokedex onChange={handlePaginate} pages={pages} data={data} />
+                        <Title className='mb-4 d-flex justify-content-between align-items-center'>
+                            <span>
+                                Pokedéx <Subtitle>Page {pages.current}/{pages.total}</Subtitle>
+                            </span>
+                            <Filter data={data} onFilter={setsortBy} />
+                        </Title>
+                        <Pokedex sortBy={sortBy} onChange={handlePaginate} pages={pages} data={data} />
                     </Container>
                 )}
                 {isLoading && (<Spinner />)}
