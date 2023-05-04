@@ -63,7 +63,7 @@ function Pokedex(props) {
               {
                 props.data.data.sort(function (a, b) {
                   if(props.sortBy) {
-                    if(a[props.sortBy] === 'string') {
+                    if(typeof a[props.sortBy] === 'string') {
                       return a[props.sortBy].localeCompare(b[props.sortBy]);
                     } else {
                       return a[props.sortBy] > b[props.sortBy] ? 1 : -1;
