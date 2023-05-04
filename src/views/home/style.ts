@@ -8,6 +8,10 @@ export const Section = styled.section<Interface>`
     width: 100%;
     position: relative;
     min-height: 100vh;
+    > .container {
+        position: relative;
+        z-index: 2;
+    }
     &::after {
         content: '';
         background: url(https://icon-icons.com/downloadimage.php?id=136305&root=2248/SVG/&file=pokeball_icon_136305.svg) center center / contain no-repeat transparent;
